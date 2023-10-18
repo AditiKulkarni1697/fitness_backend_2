@@ -6,7 +6,7 @@ require("dotenv").config();
 const { classesRouter } = require("./routes/class.route");
 const { userRoute } = require("./routes/user.route");
 const { connection } = require("./dataBase/dataBase");
-const { redis } = require("./dataBase/redis");
+const { client } = require("./dataBase/redis");
 const { trainerRouter } = require("./routes/tainer.route");
 const { sendEmail } = require("./mailer/mailer");
 const { paymentRouter } = require("./routes/payment.route");

@@ -1,7 +1,7 @@
 const express = require("express");
 const { UserModel, TrainerModel } = require("../models/user.model");
 const { ClassesModel } = require("../models/class.model");
-const { redis} = require("../dataBase/redis");
+const {client} = require("../dataBase/redis");
 const bcrypt = require("bcrypt");
 const { sendEmail, getEmailForOtp } = require("../mailer/mailer");
 const { tokenCreator } = require("../helper/tokenCreater");

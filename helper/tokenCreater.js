@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const {redis} = require ('../dataBase/redis')
+const {client} = require ('../dataBase/redis')
 require('dotenv').config()
 
 async function tokenCreator(obj){
@@ -9,7 +9,7 @@ async function tokenCreator(obj){
 
     //await redisClient.hSet('token', obj.email, token)
     
-    redis.sadd('token', obj.email,token)
+    client.sadd('token', obj.email,token)
   .then((addedCount) => {
     console.log(`Added ${addedCount} values to the set`);
   })
@@ -18,7 +18,7 @@ async function tokenCreator(obj){
   });
 
     //await redisClient.hSet("refresh_token", obj.email, refresh_token)
-    redis.sadd('refresh_token', obj.email,refresh_token)
+    client.sadd('refresh_token', obj.email,refresh_token)
   .then((addedCount) => {
     console.log(`Added ${addedCount} values to the set`);
   })

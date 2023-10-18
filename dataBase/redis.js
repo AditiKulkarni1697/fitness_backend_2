@@ -1,27 +1,14 @@
 const Redis = require("ioredis");
 require("dotenv").config();
 
-// const redisClient = redis.createClient({
-//   host: "localhost",
-//   password: "",
-//   port: 6379,
-// });
+import { createClient } from 'redis';
 
-// redisClient.connect(); //temperory changes
-
-
-// redisClient.on("error", (error) => {
-//   console.log(error.message);
-// });
-// redisClient.on("connect", () => {
-//   console.log("Connected to the redis cloud");
-// });
-
-const redis = new Redis({
-  host: 'localhost', // Redis server host (default is 'localhost')
-  port: 6379,        // Redis server port (default is 6379)
-  password: '', // Your Redis password (if set)
-  db: 0              // Redis database index (default is 0)
+const client = createClient({
+    password: process.env.redis_password,
+    socket: {
+        host: process.env.redis_host,
+        port: process.env.redis_port
+    }
 });
 
-module.exports = { redis };
+module.exports = { client };
