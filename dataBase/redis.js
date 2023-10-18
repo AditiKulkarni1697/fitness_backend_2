@@ -1,7 +1,7 @@
 // const Redis = require("ioredis");
 // 
 
-import { createClient } from 'redis';
+const { createClient } = require('redis');
 require("dotenv").config();
 
 const client = createClient({
