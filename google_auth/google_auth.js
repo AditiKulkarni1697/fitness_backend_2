@@ -1,11 +1,12 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require("dotenv").config()
 
 passport.use(new GoogleStrategy({
-    clientID: 'YOUR_CLIENT_ID',
-    clientSecret: 'YOUR_CLIENT_SECRET',
+    clientID: process.env.google_clinetID,
+    clientSecret: process.env.google_clientSecret,
     callbackURL: '/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     // Your verification and user creation logic here
-    alert("google_auth.js")
+     console.log(profile,"profile")
 }));
