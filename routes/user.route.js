@@ -1,6 +1,6 @@
 const express = require("express");
 const userRoute = express.Router();
-const { redisClient } = require("../dataBase/redis");
+const { redis} = require("../dataBase/redis");
 const { UserModel, TrainerModel } = require("../models/user.model");
 const {
   getEmailForOtp,
