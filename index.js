@@ -31,7 +31,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
       // Successful login, redirect or respond as needed
-      console.log(res)
+      window.location.replace("https://65300e797bdcdc2621ae12a5--splendid-bunny-9c5e11.netlify.app/html/client.html?client=user")
   });
 
 
