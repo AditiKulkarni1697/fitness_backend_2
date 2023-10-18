@@ -1,7 +1,8 @@
-const Redis = require("ioredis");
-require("dotenv").config();
+// const Redis = require("ioredis");
+// 
 
 import { createClient } from 'redis';
+require("dotenv").config();
 
 const client = createClient({
     password: process.env.redis_password,
