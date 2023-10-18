@@ -1,5 +1,6 @@
 const express = require("express");
 const nodemailer = require('nodemailer');
+const passport = require('passport');
 const cors = require("cors");
 require("dotenv").config();
 
@@ -22,37 +23,21 @@ app.get("/", async (req, res) => {
   });
 });
 
-// const transporter = nodemailer.createTransport({
-//   service: 'Gmail', // Use your email service provider
-//   auth: {
-//     user: process.env.email, // Your email address
-//     pass: process.env.pass // Your email password or app-specific password
-//   }
-// });
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
+}));
 
-// app.get('/send-email', (req, res) => {
-//   const toEmail = req.query.email; // Get the dynamic email from the URL parameter
-//   const otp = req.query.otp
-//   console.log(toEmail,req.query,"recipient")
-//   // Email content
-//   const mailOptions = {
-//     from: process.env.email,
-//     to: toEmail,
-//     subject: 'Test Email Subject',
-//     text: `Your OTP is ${otp}`
-//   };
+app.get('/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req, res) => {
+      // Successful login, redirect or respond as needed
+      console.log(res)
+  });
 
-//   // Send the email
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'Email sending failed' });
-//     } else {
-//       console.log('Email sent: ' + info.response);
-//       res.json({ message: 'Email sent successfully' });
-//     }
-//   });
-// });
+
+
+
+
 
 app.use("/user", userRoute);
 app.use("/trainer", trainerRouter);
