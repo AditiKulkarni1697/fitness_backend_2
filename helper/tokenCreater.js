@@ -7,26 +7,11 @@ async function tokenCreator(obj){
 
     let refresh_token = jwt.sign({ Client: obj._id,  name:obj.name}, process.env.refreshSecretKey, { expiresIn:"3d" });
 
-    //await redisClient.hSet('token', obj.email, token)
     
-    client.sadd('token', obj.email,token)
-  .then((addedCount) => {
-    console.log(`Added ${addedCount} values to the set`);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
 
-    //await redisClient.hSet("refresh_token", obj.email, refresh_token)
-    client.sadd('refresh_token', obj.email,refresh_token)
-  .then((addedCount) => {
-    console.log(`Added ${addedCount} values to the set`);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+    await client.hSet('token', obj.email, token)
 
-    return {token, refresh_token}
+    await client.hSet("refresh_token", obj.email, refresh_token)
 }
 
 module.exports = {tokenCreator}
