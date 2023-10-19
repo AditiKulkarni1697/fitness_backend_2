@@ -5,8 +5,16 @@ require("dotenv").config()
 passport.use(new GoogleStrategy({
     clientID: process.env.google_clinetID,
     clientSecret: process.env.google_clientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: 'https://fitme-2.onrender.com/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     // Your verification and user creation logic here
-     console.log(profile,"profile")
+    return done(null, profile);
 }));
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+  
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });

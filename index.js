@@ -11,10 +11,24 @@ const { client } = require("./dataBase/redis");
 const { trainerRouter } = require("./routes/tainer.route");
 const { sendEmail } = require("./mailer/mailer");
 const { paymentRouter } = require("./routes/payment.route");
+require("./google_auth/google_auth")
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.use(
+  session({
+    secret: process.env.session_secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.set('view engine', 'ejs');
 
 
 app.get("/", async (req, res) => {
@@ -24,17 +38,17 @@ app.get("/", async (req, res) => {
 });
 
 app.get('/auth/google', passport.authenticate('google', {
-  scope: ['profile', 'email']
+  scope: ['https://www.googleapis.com/auth/plus.login','profile', 'email']
 }));
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
       // Successful login, redirect or respond as needed
-      window.location.replace("https://65300e797bdcdc2621ae12a5--splendid-bunny-9c5e11.netlify.app/html/client.html?client=user")
+      res.redirect("/")
   });
 
-
+ 
 
 
 
