@@ -1,6 +1,7 @@
 const express = require("express");
 const nodemailer = require('nodemailer');
 const passport = require('passport');
+const session = require("express-session");
 const cors = require("cors");
 require("dotenv").config();
 
