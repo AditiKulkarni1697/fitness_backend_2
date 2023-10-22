@@ -46,7 +46,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
       // Successful login, redirect or respond as needed
-      res.redirect("/")
+      res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user")
   });
 
  
