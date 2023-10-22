@@ -10,7 +10,7 @@ passport.use(new GoogleStrategy({
 }, async(accessToken, refreshToken, profile, done) => {
     // Your verification and user creation logic here
     try{
-    const res =  await fetch('https://www.googleapis.com/oauth2/v2/userinfo')
+    let res =  await fetch('https://www.googleapis.com/oauth2/v2/userinfo')
     res=res.json()
     console.log(res)
     }
