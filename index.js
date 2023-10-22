@@ -47,7 +47,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   async(req, res) => {
       // Successful login, redirect or respond as needed
-      console.log(req,"req")
+      console.log(req.user,"req")
     //   try{
     //   const user = await UserModel.findOne({email:req.email})
     //   if(user){
