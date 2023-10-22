@@ -11,7 +11,7 @@ passport.use(new GoogleStrategy({
     // Your verification and user creation logic here
     console.log(profile._json.email)
 
-    return done(null, profile);
+    return done(null, profile._json.email);
 }));
 
 passport.serializeUser((user, done) => {

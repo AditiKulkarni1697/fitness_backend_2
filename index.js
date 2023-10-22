@@ -12,6 +12,7 @@ const { client } = require("./dataBase/redis");
 const { trainerRouter } = require("./routes/tainer.route");
 const { sendEmail } = require("./mailer/mailer");
 const { paymentRouter } = require("./routes/payment.route");
+const { UserModel } = require("./models/user.model");
 require("./google_auth/google_auth")
 
 const app = express();
@@ -43,10 +44,20 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
+  passport.authenticate('google', { failureRedirect: '/', session: false }),
+  async(req, res) => {
       // Successful login, redirect or respond as needed
-      res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user")
+      console.log(req)
+      const user = await UserModel.findOne({email:req})
+      if(user){
+        console.log(user)
+        res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user`)
+      }
+      else{
+        res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/signup.html")
+      }
+      
+
   });
 
  
