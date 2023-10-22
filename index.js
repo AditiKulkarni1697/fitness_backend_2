@@ -47,16 +47,20 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/', session: false }),
   async(req, res) => {
       // Successful login, redirect or respond as needed
-      console.log(req)
-      const user = await UserModel.findOne({email:req})
-      if(user){
-        console.log(user)
-        res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user`)
-      }
-      else{
-        res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/signup.html")
-      }
-      
+      console.log(req,"req")
+    //   try{
+    //   const user = await UserModel.findOne({email:req.email})
+    //   if(user){
+    //     console.log(user)
+    //     res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user`)
+    //   }
+    //   else{
+    //     res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/signup.html")
+    //   }
+    // }
+    // catch(err){
+    //   console.log(err)
+    // }
 
   });
 
