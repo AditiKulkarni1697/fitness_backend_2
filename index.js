@@ -52,10 +52,10 @@ app.get('/auth/google/callback',
       const user = await UserModel.findOne({email:req.user})
       if(user){
         console.log(user)
-        res.redirect(`https://65352b0357ebb970e99f7218--fanciful-belekoy-064ef7.netlify.app/html/client.html?client=user&data=${user}`)
+        res.redirect(`https://65352c794c06bc72bbb35bca--aesthetic-gnome-75ccb6.netlify.app/html/client.html?client=user&data=${user}`)
       }
       else{
-        res.redirect("https://65352b0357ebb970e99f7218--fanciful-belekoy-064ef7.netlify.app/html/signup.html")
+        res.redirect("https://65352c794c06bc72bbb35bca--aesthetic-gnome-75ccb6.netlify.app/html/signup.html")
       }
     }
     catch(err){
