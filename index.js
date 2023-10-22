@@ -51,7 +51,7 @@ app.get('/auth/google/callback',
       try{
       const user = await UserModel.findOne({email:req.user})
       if(user){
-        console.log(user)
+        user = JSON.stringify(user)
         res.redirect(`https://65352dcf7c315e72aa31b9bc--flourishing-baklava-9318a8.netlify.app/html/client.html?client=user&data=${user}`)
       }
       else{
