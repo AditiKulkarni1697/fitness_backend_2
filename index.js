@@ -52,10 +52,10 @@ app.get('/auth/google/callback',
       let user = await UserModel.findOne({email:req.user})
       if(user){
         user = JSON.stringify(user)
-        res.redirect(`https://653530ebbfae0c45e74fc742--radiant-mooncake-04b668.netlify.app/html/client.html?client=user&data=${user}`)
+        res.redirect(`https://65353573f393d2457b880e0e--peppy-cucurucho-3310dd.netlify.app/html/client.html?client=user&data=${user}`)
       }
       else{
-        res.redirect("https://653530ebbfae0c45e74fc742--radiant-mooncake-04b668.netlify.app/html/signup.html")
+        res.redirect("https://65353573f393d2457b880e0e--peppy-cucurucho-3310dd.netlify.app/html/signup.html")
       }
     }
     catch(err){
