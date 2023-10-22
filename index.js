@@ -52,7 +52,7 @@ app.get('/auth/google/callback',
       const user = await UserModel.findOne({email:req.user})
       if(user){
         console.log(user)
-        res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user`)
+        res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user&data=${user}`)
       }
       else{
         res.redirect("https://mellifluous-brioche-c4f197.netlify.app/html/signup.html")
