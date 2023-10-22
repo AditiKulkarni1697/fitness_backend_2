@@ -9,14 +9,7 @@ passport.use(new GoogleStrategy({
     callbackURL: 'https://fitme-2.onrender.com/auth/google/callback'
 }, async(accessToken, refreshToken, profile, done) => {
     // Your verification and user creation logic here
-    try{
-    let res =  await fetch('https://www.googleapis.com/oauth2/v2/userinfo')
-    res=res.json()
-    console.log(res)
-    }
-    catch(err){
-      console.log(err)
-    }
+    console.log(profile._json.email)
 
     return done(null, profile);
 }));
