@@ -49,7 +49,7 @@ app.get('/auth/google/callback',
       // Successful login, redirect or respond as needed
       console.log(req.user,"req")
       try{
-      const user = await UserModel.findOne({email:req.email})
+      const user = await UserModel.findOne({email:req.user})
       if(user){
         console.log(user)
         res.redirect(`https://mellifluous-brioche-c4f197.netlify.app/html/client.html?client=user`)
