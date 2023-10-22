@@ -8,6 +8,7 @@ passport.use(new GoogleStrategy({
     callbackURL: 'https://fitme-2.onrender.com/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     // Your verification and user creation logic here
+    console.log(profile)
     return done(null, profile);
 }));
 
